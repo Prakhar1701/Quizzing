@@ -49,14 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
                 Result result = MCQresponce.getResult();
 
-                result.getTimeInMinutes();
 
-                List<Questions> question = result.getQuestion();
+                List<Questions> question =result.getQuestions();
 
 
 //                question.get(0).getLable();
 
-                Toast.makeText(MainActivity.this, String.valueOf(question.size()), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, String.valueOf(question.get(0).getLable()), Toast.LENGTH_LONG).show();
             }
 
             @Override

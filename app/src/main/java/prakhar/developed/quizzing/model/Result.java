@@ -1,28 +1,30 @@
 package prakhar.developed.quizzing.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Result {
     private float timeInMinutes;
-    ArrayList<Questions> question = new ArrayList<Questions>();
 
-    public ArrayList<Questions> getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(ArrayList<Questions> question) {
-        this.question = question;
-    }
-
-// Getter Methods
+//    @SerializedName("questions")           // If Object Name Is Not Same As In API.
+//    @Expose
+    ArrayList<Questions> questions = new ArrayList<Questions>();
 
     public float getTimeInMinutes() {
         return timeInMinutes;
     }
 
-    // Setter Methods 
-
     public void setTimeInMinutes(float timeInMinutes) {
         this.timeInMinutes = timeInMinutes;
+    }
+
+    public ArrayList<Questions> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(ArrayList<Questions> questions) {
+        this.questions = questions;
     }
 }
