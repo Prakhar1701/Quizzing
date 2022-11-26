@@ -7,18 +7,14 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="160dp"
-        android:text="Posts Title :" />
 
-    <ListView
-        android:id="@+id/listView"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:scrollbars="vertical"
+        android:id="@+id/recyclerView"
+        android:background="@color/white"/>
 
 </RelativeLayout>

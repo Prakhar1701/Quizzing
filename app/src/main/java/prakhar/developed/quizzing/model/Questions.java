@@ -18,4 +18,20 @@ public class Questions {
     public void setLable(String lable) {
      this.lable = lable;
     }
-   }
+
+    public ArrayList<Options> getOptions() {
+        return options;
+    }
+
+    public void setOptions(ArrayList<Options> options) {
+        this.options = options;
+    }
+
+    public ArrayList<Integer> getCorrect_answers() {
+        return correct_answers;
+    }
+
+    public void setCorrect_answers(ArrayList<Integer> correct_answers) {
+        this.correct_answers = correct_answers;
+    }
+}
