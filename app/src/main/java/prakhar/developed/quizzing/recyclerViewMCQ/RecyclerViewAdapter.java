@@ -5,6 +5,9 @@ package prakhar.developed.quizzing.recyclerViewMCQ;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import prakhar.developed.quizzing.R;
@@ -23,6 +27,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //--------------------------------------------------------------------------------------------------
     private List<RecyclerViewModel> MCQ;
     private Context context;
+    public ArrayList<Integer> selectedOptions;
+
 
     //--------------------------------------------------------------------------------------------------
     public RecyclerViewAdapter(List<RecyclerViewModel> list, Context context) {
@@ -47,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String optionKey2Lable = MCQ.get(position).getOptionKey2();
         String optionKey3Lable = MCQ.get(position).getOptionKey3();
         String optionKey4Lable = MCQ.get(position).getOptionKey4();
-        holder.setData(lable,optionKey1Lable,optionKey2Lable,optionKey3Lable,optionKey4Lable);
+        holder.setData(lable, optionKey1Lable, optionKey2Lable, optionKey3Lable, optionKey4Lable);
 
     }
 
@@ -60,11 +66,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //--------------------------------------------------------------------------------------------------
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView lable;
-        private final Button option1;
-        private final Button option2;
-        private final Button option3;
-        private final Button option4;
+        TextView lable;
+        Button option1;
+        Button option2;
+        Button option3;
+        Button option4;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -75,6 +81,72 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             option3 = itemView.findViewById(R.id.buttonOption3);
             option4 = itemView.findViewById(R.id.buttonOption4);
 
+            selectedOptions = new ArrayList<>();
+            option1.setOnClickListener(new View.OnClickListener() {
+                int count = 0;
+
+                @Override
+                public void onClick(View view) {
+                    if (count % 2 == 0) {
+                        option1.setBackgroundColor(Color.YELLOW);
+                        selectedOptions.add(1);
+                    } else if (count % 2 != 0) {
+                        option1.setBackgroundColor(Color.rgb(103, 80, 164));
+                        selectedOptions.remove(Integer.valueOf(1));
+                    }
+                    count++;
+
+                }
+            });
+
+            option2.setOnClickListener(new View.OnClickListener() {
+                int count =0;
+
+                @Override
+                public void onClick(View view) {
+                    if (count % 2 == 0) {
+                        option2.setBackgroundColor(Color.YELLOW);
+                        selectedOptions.add(2);
+                    } else if (count % 2 != 0) {
+                        option2.setBackgroundColor(Color.rgb(103, 80, 164));
+                        selectedOptions.remove(Integer.valueOf(2));
+                    }
+                    count++;
+
+                }
+            });
+
+            option3.setOnClickListener(new View.OnClickListener() {
+                int count =0;
+
+                @Override
+                public void onClick(View view) {
+                    if (count % 2 == 0) {
+                        option3.setBackgroundColor(Color.YELLOW);
+                        selectedOptions.add(3);
+                    } else if (count % 2 != 0) {
+                        option3.setBackgroundColor(Color.rgb(103, 80, 164));
+                        selectedOptions.remove(Integer.valueOf(3));
+                    }
+                    count++;
+                }
+            });
+
+            option4.setOnClickListener(new View.OnClickListener() {
+                int count =0;
+
+                @Override
+                public void onClick(View view) {
+                    if (count % 2 == 0) {
+                        option4.setBackgroundColor(Color.YELLOW);
+                        selectedOptions.add(4);
+                    } else if (count % 2 != 0) {
+                        option4.setBackgroundColor(Color.rgb(103, 80, 164));
+                        selectedOptions.remove(Integer.valueOf(4));
+                    }
+                    count++;
+                }
+            });
         }
 
         //--------------------------------------------------------------------------------------------------
