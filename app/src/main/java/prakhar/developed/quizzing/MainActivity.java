@@ -14,6 +14,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     API_Interface apiInterface;
+    int quizCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 MCQs MCQresponce = response.body();
 
                 Result result = MCQresponce.getResult();
+
                 List<Questions> question = result.getQuestions();
 //                List<Options> option = question.get(0).getOptions();
 
@@ -46,5 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
 //----------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------------------
+    }
+
+    void loadNewQuestion(){
+        quizCount++;
+
     }
 }
