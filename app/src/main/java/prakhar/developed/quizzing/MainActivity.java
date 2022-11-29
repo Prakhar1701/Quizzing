@@ -2,10 +2,12 @@ package prakhar.developed.quizzing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import prakhar.developed.quizzing.databinding.ActivityMainBinding;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     API_Interface apiInterface;
     int quizCount = 0;
     int totalQuizCount = 6;
+    int score = 0;
+    ArrayList<Integer> selectedOptionsKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        selectedOptionsKey = new ArrayList<>();
         loadNewQuestion();
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -40,11 +45,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //----------------------------------------------------------------------------------------------------------------------------
+        binding.buttonOption1.setOnClickListener(new View.OnClickListener() {
+            int count = 0;
+
+            @Override
+            public void onClick(View view) {
+
+
+                if (count % 2 == 0) {
+                    binding.buttonOption1.setBackgroundColor(Color.YELLOW);
+                    selectedOptionsKey.add(1);
+                } else if (count % 2 != 0) {
+                    binding.buttonOption1.setBackgroundColor(Color.rgb(103, 80, 164));
+                    selectedOptionsKey.remove(Integer.valueOf(1));
+                }
+                count++;
+
+
+            }
+        });
     }
 
     String quizOutOf() {
         String quizNumber = String.valueOf(quizCount + 1) + " / " + String.valueOf(totalQuizCount);
         return quizNumber;
+    }
+
+    void updateScore(ArrayList<Integer> correctAnswersKey) {
+
+        if (selectedOptionsKey == correctAnswersKey) {
+            score++;
+        }
     }
 
     void loadNewQuestion() {
@@ -75,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
                 binding.buttonOption2.setText(optionTwo);
                 binding.buttonOption3.setText(optionThree);
                 binding.buttonOption4.setText(optionFour);
+                //-----------------------------------------------------------------------------------------
+                ArrayList<Integer> correctAnswersKey = question.get(quizCount).getCorrect_answers();
+                updateScore(correctAnswersKey);
 
                 //-----------------------------------------------------------------------------------------
                 quizCount++;
